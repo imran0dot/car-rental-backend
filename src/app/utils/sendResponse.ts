@@ -16,7 +16,7 @@ const sendResponse = (res: Response, {
     data,
     token
 }: TSendResponse) => {
-    res.send({
+    res.status(statusCode).send({
         success,
         statusCode,
         message,
