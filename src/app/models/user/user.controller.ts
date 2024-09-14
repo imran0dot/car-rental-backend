@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUserIntoDB } from "./user.service";
+import { createUserIntoDB } from "./user.services";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponce";
 
