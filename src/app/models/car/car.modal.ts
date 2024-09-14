@@ -38,5 +38,10 @@ const carSchema = new mongoose.Schema<TCar>({
     },
 });
 
+carSchema.pre('find', function(next){
+    this.find({isDeleted: {$ne: true}})
+    next()
+})
+
 const Car = mongoose.model<TCar>('Car', carSchema);
 export default Car;
