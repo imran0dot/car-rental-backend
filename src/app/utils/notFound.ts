@@ -1,12 +1,16 @@
 import { Request, Response } from "express"
-import sendResponse from "./sendResponce"
+import sendResponse from "./sendResponse"
 
-const notFound = (req: Request, res: Response) => {
-    sendResponse(res, {
-        data: '',
-        message: 'data not found',
-        status: 404,
-    })
+const notFound = (err: any , req: Request, res: Response) => {
+    const statusCode = err.statusCode || 500; 
+    const message = err.message || "Internal Server Error"; 
+
+    return sendResponse(res, {
+        success: false,
+        data: "",
+        message, 
+        statusCode, 
+    });
 };
 
 

@@ -1,21 +1,24 @@
 import { Response } from "express"
 
 type TSendResponse = {
-    status?: number,
-    data: any,
+    success: boolean,
+    statusCode: number,
     message: string,
+    data: any
 };
 
 
 const sendResponse = (res: Response, {
-    status,
-    data,
-    message
+    success,
+    statusCode,
+    message,
+    data
 }: TSendResponse) => {
     res.send({
-        status,
-        data,
-        message
+        success,
+        statusCode,
+        message,
+        data
     })
 };
 

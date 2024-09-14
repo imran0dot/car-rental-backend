@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { userRoute } from "../app/models/user/user.route";
 import { carRoute } from "../app/models/car/car.route";
+import { bookingRoute } from "../app/models/booking/booking.route";
 
 export const router = Router();
 const routes = [
@@ -11,6 +12,10 @@ const routes = [
     {
         path: '/car',
         rout: carRoute
+    },
+    {
+        path: '/booking',
+        rout: bookingRoute
     }
 ];
 
