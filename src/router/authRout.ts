@@ -5,7 +5,7 @@ export const authRouter = Router();
 
 const routes = [
     {
-        path: '/signup' ,
+        path: '/' ,
         rout: userRoute
     }
 ];

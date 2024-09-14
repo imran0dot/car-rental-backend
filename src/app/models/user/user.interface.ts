@@ -1,4 +1,4 @@
-export interface IUser {
+export interface TUser {
     name: string;
     email: string;
     role: 'user' | 'admin';
@@ -8,4 +8,5 @@ export interface IUser {
     createdAt?: Date;
     updatedAt?: Date;
   }
-  
+
+  export interface TLoginUser extends Pick<TUser, 'email' | 'password'> {}

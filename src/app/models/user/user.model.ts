@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import { IUser } from "./user.interface";
+import { TLoginUser, TUser } from "./user.interface";
 import bcrypt from "bcrypt"
 import config from "../../config"
 
-const userSchema = new mongoose.Schema<IUser>({
+const userSchema = new mongoose.Schema<TUser>({
   name: {
     type: String,
     required: true,
@@ -79,5 +79,5 @@ userSchema.post('save', function (doc, next) {
 
 
 
-const User = mongoose.model<IUser>('User', userSchema);
+const User = mongoose.model<TUser>('User', userSchema);
 export default User;
