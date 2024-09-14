@@ -6,11 +6,11 @@ import { bookingRoute } from "../app/models/booking/booking.route";
 export const router = Router();
 const routes = [
     {
-        path: '/user' ,
+        path: '/auth' ,
         rout: userRoute
     },
     {
-        path: '/car',
+        path: '/cars',
         rout: carRoute
     },
     {

@@ -3,7 +3,6 @@ import cors from 'cors';
 import { router } from './router'
 import globalErrorHandler from './app/utils/globarError';
 import notFound from './app/utils/notFound';
-import { authRouter } from './router/authRout';
 
 const app = express();
 
@@ -15,11 +14,7 @@ app.get('/', (req, res) => {
     res.send('working')
 });
 
-app.use('/api/auth/', authRouter)
-app.use('/api/v1/', router)
-
-
-
+app.use('/api/', router)
 
 app.use('*', notFound)
 app.use('*', globalErrorHandler)

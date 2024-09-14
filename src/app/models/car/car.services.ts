@@ -6,3 +6,7 @@ export const createCarIntoDb = async (carData: TCar): Promise<TCar | Error> => {
     return createCar
 }
 
+export const getAllCarFromDb = async () => {
+    const cars = await Car.find();
+    return cars
+}
