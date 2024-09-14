@@ -7,3 +7,6 @@ export const createUserIntoDB = async (userData: IUser): Promise<IUser | Error> 
         await newUser.save();
         return newUser;
 };
+
+
+
