@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { router } from './router'
 import globalErrorHandler from './app/utils/globarError';
+import notFound from './app/utils/notFound';
 
 const app = express();
 
@@ -18,6 +19,6 @@ app.use('/api/v1/', router)
 
 
 
-
+app.use('*', notFound)
 app.use('*', globalErrorHandler)
 export default app;
