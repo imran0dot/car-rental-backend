@@ -1,12 +1,14 @@
 import jwt from 'jsonwebtoken';
-import { TUser } from '../models/user/user.interface';
+import { TLoginInfo, TLoginUser } from '../models/user/user.interface';
 import config from '../config';
+import { ObjectId } from 'mongoose';
 
-const createToken = (userInfo: Pick<TUser, 'email' | 'role'>): string | Error => {
+const createToken = (userInfo : TLoginInfo): string | Error => {
     try {
         const token = jwt.sign({ 
+            userId: userInfo._id,
             email: userInfo.email,
-            role: userInfo.role,
+            role: userInfo.role
         },
             config.jwt_secret as string,
             { expiresIn: '1h' }

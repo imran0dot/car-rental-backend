@@ -16,8 +16,12 @@ const verifyUser = (req: Request, res: Response, next: NextFunction) => {
     }
 
     try {
-        const decoded = jwt.verify(token, config.jwt_secret as string) as { role: "admin" | "user" };
+        const decoded = jwt.verify(token, config.jwt_secret as string) as { 
+            role: "admin" | "user",
+            userId: Object
+        };
         if (decoded?.role === "user") {
+            (req as any).headers.userId = decoded.userId;
             next();
         }else{
             return sendResponse(res, {

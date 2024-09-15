@@ -11,6 +11,7 @@ const bookingSchema = new mongoose.Schema<TBooking>({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
+
   },
   car: {
     type: mongoose.Schema.Types.ObjectId,
@@ -23,7 +24,7 @@ const bookingSchema = new mongoose.Schema<TBooking>({
   },
   endTime: {
     type: String,
-    required: true,
+    default: null
   },
   totalCost: {
     type: Number,

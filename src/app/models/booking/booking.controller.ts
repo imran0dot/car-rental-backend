@@ -2,9 +2,20 @@ import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { createBookingIntoDb, getAllBookingsFromDb } from "./booking.services";
+import TBooking from "./booking.interface";
+import { Types } from "mongoose";
 
 export const createBooking = catchAsync(async (req: Request, res: Response) => {
-    const result = await createBookingIntoDb(req.body);
+    const userId = req?.headers?.userId as Object;
+    const {carId, startTime, date} = req.body;
+
+    const bookingInfo: TBooking = {
+        user: userId as Types.ObjectId,
+        car: carId,
+        date,
+        startTime,
+    };
+    const result = await createBookingIntoDb(bookingInfo);
     sendResponse(res, {
         success: true,
         data: result,
