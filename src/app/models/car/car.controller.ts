@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
 import { createCarIntoDb, deleteSingleCarIntoDb, getAllCarFromDb, getSingleCarFromDb, updateSingleCarIntoDb } from "./car.services";
 import sendResponse from "../../utils/sendResponse";
-import { ObjectId } from "mongoose";
 
 export const createCar = catchAsync(async (req: Request, res: Response) => {
     const result = await createCarIntoDb(req.body);

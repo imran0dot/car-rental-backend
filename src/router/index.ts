@@ -14,7 +14,7 @@ const routes = [
         rout: carRoute
     },
     {
-        path: '/booking',
+        path: '/bookings',
         rout: bookingRoute
     }
 ];
