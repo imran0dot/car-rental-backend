@@ -9,7 +9,7 @@ const globalErrorHandler = (err: any, req: Request, res: Response, next: NextFun
         return sendResponse(res, {
             success: false,
             data: "",
-            message, 
+            errorMessages: message, 
             statusCode, 
         });
     }

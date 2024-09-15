@@ -9,7 +9,7 @@ const verifyUser = (req: Request, res: Response, next: NextFunction) => {
     if (!token) {
         return sendResponse(res, {
             data: "",
-            message: "Access denied. No token provided.",
+            message: "You have no access to this route",
             statusCode: 401,
             success: false
         })
@@ -32,7 +32,6 @@ const verifyUser = (req: Request, res: Response, next: NextFunction) => {
             })
         }
     } catch (err) {
-        console.log(err);
         return sendResponse(res, {
             data: "",
             message: "Invalid or expired token.",

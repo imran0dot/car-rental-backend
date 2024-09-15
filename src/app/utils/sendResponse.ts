@@ -3,9 +3,11 @@ import { Response } from "express"
 type TSendResponse = {
     success: boolean,
     statusCode: number,
-    message: string,
+    errorMessages?: string
+    message?: string,
     data: any,
-    token?: string
+    token?: string,
+    stack?: string
 };
 
 
@@ -14,14 +16,18 @@ const sendResponse = (res: Response, {
     statusCode,
     message,
     data,
-    token
+    token,
+    errorMessages,
+    stack
 }: TSendResponse) => {
     res.status(statusCode).send({
         success,
         statusCode,
         message,
         data,
-        token
+        token,
+        errorMessages,
+        stack
     })
 };
 

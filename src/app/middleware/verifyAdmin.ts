@@ -9,7 +9,7 @@ const verifyAdmin = (req: Request, res: Response, next: NextFunction) => {
     if (!token) {
         return sendResponse(res, {
             data: "",
-            message: "Access denied. No token provided.",
+            message: "You have no access to this route",
             statusCode: 401,
             success: false
         })
