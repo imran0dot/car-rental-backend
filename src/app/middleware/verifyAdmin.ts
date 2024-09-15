@@ -28,7 +28,6 @@ const verifyAdmin = (req: Request, res: Response, next: NextFunction) => {
             })
         }
     } catch (err) {
-        console.log(err);
         return sendResponse(res, {
             data: "",
             message: "Invalid or expired token.",

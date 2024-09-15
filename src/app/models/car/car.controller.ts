@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
-import { createCarIntoDb, deleteSingleCarIntoDb, getAllCarFromDb, getSingleCarFromDb, updateSingleCarIntoDb } from "./car.services";
+import { createCarIntoDb, deleteSingleCarIntoDb, getAllCarFromDb, getSingleCarFromDb, updateReturnCarIntoDb, updateSingleCarIntoDb } from "./car.services";
 import sendResponse from "../../utils/sendResponse";
 
 export const createCar = catchAsync(async (req: Request, res: Response) => {
@@ -58,6 +58,19 @@ export const deleteSingleCar = catchAsync(async (req: Request, res: Response) =>
         success: true,
         data: result,
         message: "Car Deleted successfully",
+        statusCode: 200,
+    });
+})
+
+
+export const carReturn = catchAsync(async (req: Request, res: Response) => {
+    const {bookingId, endTime} = req.body;
+    const result = await updateReturnCarIntoDb(bookingId, endTime);
+
+    sendResponse(res, {
+        success: true,
+        data: result,
+        message: "Car returned successfully",
         statusCode: 200,
     });
 })
