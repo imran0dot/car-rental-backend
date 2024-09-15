@@ -36,7 +36,10 @@ export const getAllBookingsFromDb = async (query: { carId?: string, date?: strin
 
 
 export const getMyBookingFromDb = async (userId: Types.ObjectId) => {
-    const result = await Booking.find({ user: userId });
-    return result;
+        const populatedBookingHistory = await Booking.find({ user: userId })
+            .populate({ path: 'user', select: '-password -createdAt -updatedAt' }) 
+            .populate('car'); 
+        
+        return populatedBookingHistory;
 }
 
