@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
-import { createBookingIntoDb, getAllBookingsFromDb } from "./booking.services";
+import { createBookingIntoDb, getAllBookingsFromDb, getMyBookingFromDb } from "./booking.services";
 import TBooking from "./booking.interface";
 import { Types } from "mongoose";
 
+// create booking for just normal user with 
 export const createBooking = catchAsync(async (req: Request, res: Response) => {
     const userId = req?.headers?.userId as Object;
     const {carId, startTime, date} = req.body;
@@ -25,6 +26,7 @@ export const createBooking = catchAsync(async (req: Request, res: Response) => {
 });
 
 
+// get all booking data for just admin user  
 export const getBookings = catchAsync(async (req: Request, res: Response) => {
     const queryParams = req.query;
     const result = await getAllBookingsFromDb(queryParams);
@@ -34,4 +36,20 @@ export const getBookings = catchAsync(async (req: Request, res: Response) => {
         message: "Bookings retrieved successfully",
         statusCode: 200,
     });
+});
+
+
+export const myBookings = catchAsync(async (req: Request, res: Response) => {
+    const userId = req?.headers?.userId as Object;
+    const result = await getMyBookingFromDb(userId as Types.ObjectId);
+    sendResponse(res, {
+        success: true,
+        data: result,
+        message: "My Bookings retrieved successfully",
+        statusCode: 200,
+    })
+
 })
+
+
+

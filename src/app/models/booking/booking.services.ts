@@ -1,15 +1,16 @@
+import { Types } from "mongoose";
 import TBooking from "./booking.interface";
 import Booking from "./booking.modal";
 
 export const createBookingIntoDb = async (bookingData: TBooking): Promise<TBooking | Error> => {
 
     const booking = await Booking.create(bookingData);
-    const populatedBooking = await 
-    (await booking
-        .populate({ path: 'user', select: '-password -createdAt -updatedAt'}))
-        .populate('car');
+    const populatedBooking = await
+        (await booking
+            .populate({ path: 'user', select: '-password -createdAt -updatedAt' }))
+            .populate('car');
 
-return populatedBooking;
+    return populatedBooking;
 };
 
 
@@ -33,4 +34,9 @@ export const getAllBookingsFromDb = async (query: { carId?: string, date?: strin
     return booking;
 };
 
+
+export const getMyBookingFromDb = async (userId: Types.ObjectId) => {
+    const result = await Booking.find({ user: userId });
+    return result;
+}
 
